@@ -17,7 +17,7 @@ $(document).ready(function(){
  counter = 0;
 
 
-  	newgame();
+  	newGame();
 
   	function guess() {
   		var input = $('#userGuess').val();
@@ -79,11 +79,15 @@ $(document).ready(function(){
   	$('#guessButton').click(function() {
   		guess();
   	});
-  	function newgame() {
+  	function newGame() {
   		console.log(secretNumber);
   		return secretNumber
 
   	};
+    $('.new').click(function(){
+        return newGame();
+        // location.reload();
+    });
      
 });
 
