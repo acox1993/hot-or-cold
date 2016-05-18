@@ -12,13 +12,27 @@ $(document).ready(function(){
   		$(".overlay").fadeOut(1000);
   	});
 
-
- secretNumber = Math.floor(Math.random()*(100-1) + 1);
+      // global variables
+ // secretNumber = Math.floor(Math.random()*(100-1) + 1);
  counter = 0;
+
 
 
   	newGame();
 
+
+      // newGame function
+    function newGame() {
+      secretNumber = Math.floor(Math.random()*(100-1) + 1);
+      // console.log(secretNumber);
+      counter = 0;
+      $('h2#feedback').html('Make your Guess');
+      $('span#count').html('0');
+      $('ul#guessList').html("");
+      return secretNumber
+
+    };
+      // guess function
   	function guess() {
   		var input = $('#userGuess').val();
   		if (isNaN(input)) {
@@ -29,8 +43,8 @@ $(document).ready(function(){
   			$('h2#feedback').html('Please enter a number between 1 and 100');
   			return
   		};
-  		console.log(input)
-  		console.log(secretNumber)
+  		// console.log(input)
+  		// console.log(secretNumber)
   		
   		var smallerNumber = Math.min(input, secretNumber);
   		var largerNumber = Math.max(input, secretNumber);
@@ -71,22 +85,18 @@ $(document).ready(function(){
   		$('input#userGuess').val('').focus();
       $('#guessList').append('<li>' + input + '</li>'); 
   	};
+           // log guess
     $(document).keydown(function(e) {
       if (e.keyCode == 13) {
            guess();
         }
     });
-  	$('#guessButton').click(function() {
-  		guess();
-  	});
-  	function newGame() {
-  		console.log(secretNumber);
-  		return secretNumber
-
-  	};
+    $('#guessButton').click(function() {
+      guess();
+    });
+    // new game click
     $('.new').click(function(){
-        return newGame();
-        // location.reload();
+        newGame();
     });
      
 });
